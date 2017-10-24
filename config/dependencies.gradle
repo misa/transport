@@ -1,0 +1,97 @@
+
+ext {
+    // Application
+    appId = "name.kocian.tfl"
+    versionCode = 1
+    versionName = "0.5.0-SNAPSHOT"
+
+    // Android
+    androidBuildToolsVersion = "26.0.2"
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 26
+    androidCompileSdkVersion = 26
+    kotlinVersion = '1.1.51'
+
+    // Libraries
+    androidSupportLibraryVersion = '26.1.0'
+    constraintLayoutVersion = '1.0.2'
+    daggerVersion = '2.11'
+    rxJavaVersion = '2.1.4'
+    rxAndroidVersion = '2.0.1'
+    okHttpVersion = '3.9.0'
+    retrofitVersion = '2.3.0'
+    retrofitRxAdapterVersion = '1.0.0'
+    rxBroadcastVersion = '2.0.0'
+
+    //Testing
+    mockitoVersion = '2.10.0'
+    assertJVersion = '3.8.0'
+    junitVersion = '4.12'
+    espressoCoreVersion = '3.0.1'
+    espressoRunnerVersion = '1.0.1'
+
+    /**
+     * Presentation
+     */
+    presentationDependencies = [
+            supportAppcompat:   "com.android.support:appcompat-v7:${androidSupportLibraryVersion}",
+            supportDesign:      "com.android.support:design:${androidSupportLibraryVersion}",
+            constraintLayout:   "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+    ]
+
+    /**
+     * Domain
+     */
+    domainDependencies = [
+    ]
+
+    /**
+     * Data source
+     */
+    dataSourceDependencies = [
+            okHttp:             "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLogging:      "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit:           "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitGsonMap:    "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitRxAdapter:  "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${retrofitRxAdapterVersion}",
+    ]
+
+    /**
+     * Device
+     */
+    deviceDependencies = [
+            rxBroadcast:        "com.cantrowitz:rxbroadcast:${rxBroadcastVersion}",
+    ]
+
+    /**
+     * Shared
+     */
+    sharedDependencies = [
+            dagger:             "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerAndroid:      "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerSupport:      "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessor:    "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+    ]
+
+    /**
+     * Testing
+     */
+    testDependencies = [
+            junit4:             "junit:junit:${junitVersion}",
+            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+            assertJ:            "org.assertj:assertj-core:${assertJVersion}",
+            espressoCore:       "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}",
+            espressoRunner:     "com.android.support.test:runner:${espressoRunnerVersion}",
+            mockWebServer:      "com.squareup.okhttp3:mockwebserver:${okHttpVersion}",
+    ]
+
+    /**
+     * Development
+     */
+    developmentDependencies = [
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+    ]
+}

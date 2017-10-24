@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: '../config/android.gradle'
+
+android {
+    defaultConfig {
+        applicationId rootProject.ext.appId
+
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':datasource')
+    implementation project(':device')
+
+    implementation presentationDependencies.supportDesign
+    implementation presentationDependencies.supportAppcompat
+    implementation presentationDependencies.constraintLayout
+
+    implementation dataSourceDependencies.retrofit
+    implementation dataSourceDependencies.retrofitGsonMap
+
+    androidTestImplementation testDependencies.junit4
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.espressoRunner
+    androidTestImplementation testDependencies.mockWebServer
+
+    implementation developmentDependencies.kotlin
+}

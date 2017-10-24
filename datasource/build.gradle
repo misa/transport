@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: '../config/android.gradle'
+
+android {
+    buildTypes.each {
+        it.buildConfigField 'long', 'NETWORK_TIMEOUT', "1"
+        it.buildConfigField 'String', 'BASE_URL', "\"http://api.tfl.gov.uk\""
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+
+    implementation dataSourceDependencies.okHttp
+    implementation dataSourceDependencies.okHttpLogging
+    implementation dataSourceDependencies.retrofit
+    implementation dataSourceDependencies.retrofitGsonMap
+    implementation dataSourceDependencies.retrofitRxAdapter
+}

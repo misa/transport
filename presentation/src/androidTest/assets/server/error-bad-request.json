@@ -1,0 +1,9 @@
+{
+  "$type": "Tfl.Api.Presentation.Entities.ApiError, Tfl.Api.Presentation.Entities",
+  "timestampUtc": "2017-10-22T01:43:59.3627832Z",
+  "exceptionType": "ApiArgumentException",
+  "httpStatusCode": 400,
+  "httpStatus": "BadRequest",
+  "relativeUri": "/line/mode/tube,test/status",
+  "message": "The following modes are not recognised: test"
+}

@@ -1,0 +1,51 @@
+// Android related versioning
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.androidCompileSdkVersion
+    buildToolsVersion globalConfiguration.androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.androidMinSdkVersion
+        targetSdkVersion globalConfiguration.androidTargetSdkVersion
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles fileTree(dir: "../config/proguard", include: ["*.pro"]).asList().toArray()
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        lintConfig file("../config/lint.xml")
+    }
+}
+
+dependencies {
+    implementation sharedDependencies.dagger
+    implementation sharedDependencies.daggerAndroid
+    implementation sharedDependencies.daggerSupport
+    kapt sharedDependencies.daggerCompiler
+    kapt sharedDependencies.daggerProcessor
+
+    implementation sharedDependencies.rxJava
+    implementation sharedDependencies.rxAndroid
+
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.assertJ
+    testImplementation testDependencies.junit4
+
+    implementation developmentDependencies.kotlin
+}

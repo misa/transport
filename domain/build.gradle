@@ -1,0 +1,19 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation sharedDependencies.dagger
+    implementation sharedDependencies.daggerAndroid
+    implementation sharedDependencies.daggerSupport
+    kapt sharedDependencies.daggerCompiler
+    kapt sharedDependencies.daggerProcessor
+
+    implementation sharedDependencies.rxJava
+    implementation sharedDependencies.rxAndroid
+
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.assertJ
+    testImplementation testDependencies.junit4
+
+    implementation developmentDependencies.kotlin
+}

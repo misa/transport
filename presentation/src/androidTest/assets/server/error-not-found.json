@@ -1,0 +1,9 @@
+{
+  "$type": "Tfl.Api.Presentation.Entities.ApiError, Tfl.Api.Presentation.Entities",
+  "timestampUtc": "2017-10-22T00:04:12.1133694Z",
+  "exceptionType": "EntityNotFoundException",
+  "httpStatusCode": 404,
+  "httpStatus": "NotFound",
+  "relativeUri": "/line/mode/tube/statusx",
+  "message": "Resource not found: http://api:8001/line/mode/tube/statusx"
+}
