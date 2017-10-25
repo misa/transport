@@ -46,9 +46,9 @@ class NetworkModule {
         }
 
         return builder
-                .connectTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.MINUTES)
-                .readTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.MINUTES)
-                .writeTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.MINUTES)
+                .connectTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
                 .build()
     }
 

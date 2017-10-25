@@ -4,8 +4,8 @@ apply from: '../config/android.gradle'
 
 android {
     buildTypes.each {
-        it.buildConfigField 'long', 'NETWORK_TIMEOUT', "1"
         it.buildConfigField 'String', 'BASE_URL', "\"http://api.tfl.gov.uk\""
+        it.buildConfigField 'long', 'NETWORK_TIMEOUT', "15"
     }
 }
 
