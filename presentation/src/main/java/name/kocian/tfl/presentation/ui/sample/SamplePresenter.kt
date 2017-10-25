@@ -13,15 +13,25 @@ class SamplePresenter(
     : SampleMvp.Presenter, BasePresenter<SampleMvp.View>() {
 
     override fun initPresenter() {
+        loadStatus()
+
+        attachNetworkManager(networkManager)
+    }
+
+    override fun loadStatus() {
         compositeDisposable.add(statusUseCase.build()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { view?.showGreetings(it.get(0).name) },
-                        { view?.showStatusNotAvailableError() }
+                        {
+                            view?.hideStatusNotAvailableError()
+                            view?.showGreetings(it.get(0).name)
+                        },
+                        {
+                            view?.hideLoading()
+                            view?.showStatusNotAvailableError()
+                        }
                 ))
-
-        attachNetworkManager(networkManager)
     }
 
     override fun onNetworkReconnected() {

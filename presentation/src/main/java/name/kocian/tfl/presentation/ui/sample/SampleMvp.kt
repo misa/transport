@@ -9,9 +9,15 @@ interface SampleMvp {
         fun showGreetings(message: String)
 
         fun showStatusNotAvailableError()
+
+        fun hideStatusNotAvailableError()
+
+        fun hideLoading()
     }
 
     interface Presenter : MvpPresenter<View> {
         fun initPresenter()
+
+        fun loadStatus()
     }
 }
