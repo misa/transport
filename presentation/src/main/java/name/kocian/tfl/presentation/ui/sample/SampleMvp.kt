@@ -7,6 +7,8 @@ interface SampleMvp {
 
     interface View : MvpView {
         fun showGreetings(message: String)
+
+        fun showStatusNotAvailableError()
     }
 
     interface Presenter : MvpPresenter<View> {

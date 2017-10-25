@@ -6,7 +6,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import name.kocian.tfl.datasource.BuildConfig
-import name.kocian.tfl.datasource.service.SampleService
+import name.kocian.tfl.datasource.service.StatusService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -21,8 +21,8 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideProductService(retrofit: Retrofit): SampleService {
-        return retrofit.create(SampleService::class.java)
+    fun provideProductService(retrofit: Retrofit): StatusService {
+        return retrofit.create(StatusService::class.java)
     }
 
     @Provides

@@ -2,4 +2,6 @@
 
     <string name="app_name">TFL status</string>
 
+    <string name="error_data_not_available">Status\nnot available</string>
+
 </resources>

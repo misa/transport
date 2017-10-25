@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity(), SampleMvp.View {
     }
 
     override fun showGreetings(message: String) {
-        welcome.text = message
+        status_error_message.text = message
+    }
+
+    override fun showStatusNotAvailableError() {
+        status_error_message.setText(R.string.error_data_not_available)
     }
 }
