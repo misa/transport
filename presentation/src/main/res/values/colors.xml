@@ -22,6 +22,11 @@
     <color name="line_color_victoria">#00a0e2</color>
     <color name="line_color_waterloo_city">#76d0bd</color>
 
+    <color name="line_color_dlr">#00afad</color>
+    <color name="line_color_london_overground">#e86a10</color>
+    <color name="line_color_tfl_rail">#0019a8</color>
+    <color name="line_color_tram">#66cc00</color>
+
     <!-- Line status -->
     <color name="warning">#ffcc0000</color>
 
