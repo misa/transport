@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".presentation.ui.sample.MainActivity">
+
+    <View
+        android:id="@+id/v_line_status_color"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/line_color_victoria" />
+
+    <ImageView
+        android:id="@+id/iv_line_status_icon"
+        android:layout_width="26dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/v_line_status_color"
+        android:contentDescription="@string/line_status_icon"
+        app:layout_constraintLeft_toRightOf="@+id/v_line_status_color"
+        app:layout_constraintTop_toTopOf="@+id/v_line_status_color"
+        app:srcCompat="@drawable/ic_warning"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_line_status_name"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="7dp"
+        android:layout_toEndOf="@id/iv_line_status_icon"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="4dp"
+        android:paddingTop="2dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="#333"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/iv_line_status_icon"
+        app:layout_constraintRight_toLeftOf="@+id/tv_line_status_severity"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Victoria" />
+
+    <TextView
+        android:id="@+id/tv_line_status_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/tv_line_status_name"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/v_line_status_color"
+        android:orientation="vertical"
+        android:paddingEnd="8dp"
+        android:paddingStart="0dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textColor="#333"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_line_status_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_line_status_name"
+        tools:text="Severe delays between Earl's Court and Wimbledon due to a signal failure at East Putney. Tickets are being accepted on local buses and South West Trains. GOOD SERVICE on the rest of the line."
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_line_status_severity"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/warning"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Part Closure" />
+
+</android.support.constraint.ConstraintLayout>
