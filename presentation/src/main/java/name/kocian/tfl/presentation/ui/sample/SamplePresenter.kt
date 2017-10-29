@@ -20,11 +20,13 @@ class SamplePresenter(
     }
 
     override fun loadStatus() {
+
         compositeDisposable.add(statusUseCase.build()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .toObservable()
                 .flatMap { Observable.fromIterable(it) }
+                .sorted(LinesComparator())
                 .map { LineStatusModelMapping().toModel(it) }
                 .toList()
                 .subscribe(
