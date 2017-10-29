@@ -1,6 +1,7 @@
 package name.kocian.tfl.presentation.ui.sample
 
 import android.util.Log
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import name.kocian.tfl.device.network.NetworkManager
@@ -22,10 +23,15 @@ class SamplePresenter(
         compositeDisposable.add(statusUseCase.build()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .toObservable()
+                .flatMap { Observable.fromIterable(it) }
+                .map { LineStatusModelMapping().toModel(it) }
+                .toList()
                 .subscribe(
                         {
                             view?.hideStatusNotAvailableError()
-                            view?.showGreetings(it.get(0).name)
+                            view?.hideLoading()
+                            view?.showStatuses(it)
                         },
                         {
                             view?.hideLoading()
