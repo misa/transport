@@ -1,6 +1,7 @@
 package name.kocian.tfl.presentation.ui.sample
 
 import dagger.Provides
+import name.kocian.tfl.datasource.dto.LineStatusDtoMapper
 import name.kocian.tfl.datasource.repository.StatusRepositoryImpl
 import name.kocian.tfl.datasource.service.StatusService
 import name.kocian.tfl.device.network.NetworkManager
@@ -13,8 +14,10 @@ import name.kocian.tfl.presentation.di.ActivityScope
 class SampleModule {
 
     @Provides
-    fun provideSampleRepository(statusService: StatusService): StatusRepository {
-        return StatusRepositoryImpl(statusService)
+    fun provideSampleRepository(
+            statusService: StatusService,
+            lineStatusMapper: LineStatusDtoMapper): StatusRepository {
+        return StatusRepositoryImpl(statusService, lineStatusMapper)
     }
 
     @Provides

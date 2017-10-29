@@ -1,8 +1,8 @@
 package name.kocian.tfl.presentation.ui.sample
 
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import dagger.android.AndroidInjection
@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity(), SampleMvp.View {
     @Inject
     lateinit var presenter: SampleMvp.Presenter
 
+    private val adapter = LineStatusAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -25,14 +27,17 @@ class MainActivity : AppCompatActivity(), SampleMvp.View {
         setSupportActionBar(toolbar)
         presenter.attachView(this)
         presenter.initPresenter()
-        status_swipe_refresh.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener { presenter.loadStatus() })
+        status_swipe_refresh.setOnRefreshListener({ presenter.loadStatus() })
     }
 
     override fun showStatuses(statuses: List<StatusModel>) {
-        val adapter = LineStatusAdapter()
-        adapter.items = statuses
-        rv_lines.adapter = adapter
-        rv_lines.layoutManager = LinearLayoutManager(this)
+        if (rv_lines.layoutManager == null) {
+            rv_lines.layoutManager = LinearLayoutManager(this)
+            rv_lines.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+            rv_lines.adapter = adapter
+        }
+
+        adapter.setStatuses(statuses)
     }
 
     override fun showStatusNotAvailableError() {

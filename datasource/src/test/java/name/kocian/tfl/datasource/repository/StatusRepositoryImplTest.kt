@@ -2,6 +2,8 @@ package name.kocian.tfl.datasource.repository
 
 import io.reactivex.Single
 import name.kocian.tfl.datasource.dto.LineStatusDto
+import name.kocian.tfl.datasource.dto.LineStatusDtoMapper
+import name.kocian.tfl.datasource.dto.SeverityDto
 import name.kocian.tfl.datasource.service.StatusService
 import name.kocian.tfl.domain.repository.StatusRepository
 import org.junit.Before
@@ -21,12 +23,13 @@ class StatusRepositoryImplTest {
 
     @Before
     fun setUp() {
-        repository = StatusRepositoryImpl(mockStatusService)
+        repository = StatusRepositoryImpl(mockStatusService, LineStatusDtoMapper())
     }
 
     @Test
     fun getTestReturnsSampleText() {
-        val tubeDto = LineStatusDto("id", "test", "type")
+        val lineStatuses = mutableListOf(SeverityDto(10, "severity", "description"))
+        val tubeDto = LineStatusDto("id", "test", "type", lineStatuses)
         val response = Collections.singletonList(tubeDto)
 
         `when`(mockStatusService.lineStatus).thenReturn(Single.just(response))

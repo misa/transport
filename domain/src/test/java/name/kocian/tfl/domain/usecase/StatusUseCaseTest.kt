@@ -38,7 +38,7 @@ class StatusUseCaseTest {
     @Test
     fun testBuildObservable() {
         val result = ArrayList<LineStatus>()
-        result.add(LineStatus("id", "name", "type"))
+        result.add(LineStatus("id", "name", "type", 10, "severity", "description"))
         `when`(statusRepository.getLineStatus()).thenReturn(Single.just(result))
 
         statusUseCase.build()

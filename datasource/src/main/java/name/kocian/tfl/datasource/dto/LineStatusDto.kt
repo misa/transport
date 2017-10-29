@@ -10,5 +10,8 @@ data class LineStatusDto(
         val name: String,
 
         @SerializedName("modeName")
-        val transportType: String
+        val transportType: String,
+
+        @SerializedName("lineStatuses")
+        val lineSeverity: List<SeverityDto>
 )

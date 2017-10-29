@@ -5,6 +5,7 @@ import name.kocian.tfl.presentation.model.StatusModel
 
 class LineStatusModelMapping {
     fun toModel(lineStatus: LineStatus): StatusModel {
-        return StatusModel(lineStatus.id, lineStatus.name, lineStatus.transportType)
+        return StatusModel(lineStatus.id, lineStatus.name, lineStatus.transportType,
+                lineStatus.severity, lineStatus.severityTitle, lineStatus.description)
     }
 }

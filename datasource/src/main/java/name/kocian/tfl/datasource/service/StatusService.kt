@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface StatusService {
 
-    @get:GET("/line/mode/tube/status")
+    @get:GET("/line/mode/tube,overground,dlr,tflrail,tram/status")
     val lineStatus: Single<List<LineStatusDto>>
 }

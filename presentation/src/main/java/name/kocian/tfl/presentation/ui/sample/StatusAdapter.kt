@@ -12,7 +12,7 @@ import name.kocian.tfl.presentation.model.StatusModel
 import java.util.*
 
 internal class LineStatusAdapter(
-    var items: List<StatusModel> = ArrayList()
+        private var items: List<StatusModel> = ArrayList()
 ) : RecyclerView.Adapter<LineStatusAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,11 +26,28 @@ internal class LineStatusAdapter(
 
         val line = items[holder.adapterPosition]
         val colorId = holder.vLineColor.context.resources.getIdentifier(
-                "line_color_" + line.id, "color",
+                "line_color_" + line.id.replace("-", "_"), "color",
                 holder.vLineColor.context.packageName)
 
         holder.vLineColor.setBackgroundResource(colorId)
-        holder.tvName.setText(line.name)
+        holder.tvName.text = line.name
+
+        if (line.severity < SEVERITY_GOOD_SERVICE) {
+            holder.tvDescription.text = line.description
+            holder.tvSeverity.text = line.severityTitle
+            holder.tvDescription.visibility = View.VISIBLE
+            holder.tvStatusIcon.visibility = View.VISIBLE
+            holder.tvSeverity.visibility = View.VISIBLE
+        } else if (line.severity == SEVERITY_CLOSED) {
+            holder.tvDescription.visibility = View.GONE
+            holder.tvSeverity.visibility = View.VISIBLE
+            holder.tvSeverity.text = line.severityTitle
+            holder.tvStatusIcon.visibility = View.INVISIBLE
+        } else {
+            holder.tvDescription.visibility = View.GONE
+            holder.tvSeverity.visibility = View.INVISIBLE
+            holder.tvStatusIcon.visibility = View.INVISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
@@ -54,7 +71,6 @@ internal class LineStatusAdapter(
     }
 
     companion object {
-
         /**
          * Severity - Good service.
          */
