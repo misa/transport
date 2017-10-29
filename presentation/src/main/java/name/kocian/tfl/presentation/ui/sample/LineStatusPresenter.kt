@@ -8,10 +8,10 @@ import name.kocian.tfl.device.network.NetworkManager
 import name.kocian.tfl.domain.usecase.StatusUseCase
 import name.kocian.tfl.presentation.mvp.BasePresenter
 
-class SamplePresenter(
+class LineStatusPresenter(
         private val statusUseCase: StatusUseCase,
         private val networkManager: NetworkManager)
-    : SampleMvp.Presenter, BasePresenter<SampleMvp.View>() {
+    : LineStatusMvp.Presenter, BasePresenter<LineStatusMvp.View>() {
 
     override fun initPresenter() {
         loadStatus()
@@ -43,10 +43,10 @@ class SamplePresenter(
     }
 
     override fun onNetworkReconnected() {
-        Log.v("SamplePresenter", "Network reconnected")
+        Log.v("LineStatusPresenter", "Network reconnected")
     }
 
     override fun onNetworkDisconnected() {
-        Log.v("SamplePresenter", "Network disconnected")
+        Log.v("LineStatusPresenter", "Network disconnected")
     }
 }

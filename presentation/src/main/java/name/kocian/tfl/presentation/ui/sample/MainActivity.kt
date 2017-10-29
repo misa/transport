@@ -12,10 +12,10 @@ import name.kocian.tfl.R
 import name.kocian.tfl.presentation.model.StatusModel
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), SampleMvp.View {
+class MainActivity : AppCompatActivity(), LineStatusMvp.View {
 
     @Inject
-    lateinit var presenter: SampleMvp.Presenter
+    lateinit var presenter: LineStatusMvp.Presenter
 
     private val adapter = LineStatusAdapter()
 

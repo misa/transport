@@ -9,21 +9,21 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class SamplePresenterTest {
-    private lateinit var presenter: SampleMvp.Presenter
+class LineStatusPresenterTest {
+    private lateinit var presenter: LineStatusMvp.Presenter
 
     @Mock
     private lateinit var mockStatusUseCase: StatusUseCase
 
     @Mock
-    private lateinit var mockView: SampleMvp.View
+    private lateinit var mockView: LineStatusMvp.View
 
     @Mock
     private lateinit var mockNetworkManager: NetworkManager
 
     @Before
     fun setUp() {
-        presenter = SamplePresenter(mockStatusUseCase, mockNetworkManager)
+        presenter = LineStatusPresenter(mockStatusUseCase, mockNetworkManager)
         presenter.attachView(mockView)
     }
 

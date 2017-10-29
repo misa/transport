@@ -4,7 +4,7 @@ import name.kocian.tfl.presentation.model.StatusModel
 import name.kocian.tfl.presentation.mvp.MvpPresenter
 import name.kocian.tfl.presentation.mvp.MvpView
 
-interface SampleMvp {
+interface LineStatusMvp {
 
     interface View : MvpView {
         fun showStatuses(statuses: List<StatusModel>)

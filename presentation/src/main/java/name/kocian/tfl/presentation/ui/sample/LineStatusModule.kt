@@ -11,7 +11,7 @@ import name.kocian.tfl.presentation.di.ActivityScope
 
 @ActivityScope
 @dagger.Module
-class SampleModule {
+class LineStatusModule {
 
     @Provides
     fun provideSampleRepository(
@@ -21,7 +21,7 @@ class SampleModule {
     }
 
     @Provides
-    fun provideSamplePresenter(statusUseCase: StatusUseCase, networkManager: NetworkManager): SampleMvp.Presenter {
-        return SamplePresenter(statusUseCase, networkManager)
+    fun provideSamplePresenter(statusUseCase: StatusUseCase, networkManager: NetworkManager): LineStatusMvp.Presenter {
+        return LineStatusPresenter(statusUseCase, networkManager)
     }
 }
