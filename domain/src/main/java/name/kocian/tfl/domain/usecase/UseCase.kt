@@ -1,7 +1,5 @@
 package name.kocian.tfl.domain.usecase
 
-import io.reactivex.Observable
-
-interface UseCase<T> {
-    fun asObservable(): Observable<T>
+interface UseCase<out T> {
+    fun initialise(): T
 }

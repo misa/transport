@@ -4,6 +4,8 @@ apply from: '../config/android.gradle'
 
 android {
     buildTypes.each {
+        it.buildConfigField 'long', 'CACHE_MAX_AGE', "60"
+        it.buildConfigField 'long', 'CACHE_MAX_STALE', "3600"
         it.buildConfigField 'long', 'NETWORK_TIMEOUT', "15"
         it.buildConfigField 'String', 'BASE_URL', "\"https://api.tfl.gov.uk\""
     }
@@ -11,6 +13,7 @@ android {
 
 dependencies {
     implementation project(':domain')
+    implementation project(':device')
 
     implementation dataSourceDependencies.okHttp
     implementation dataSourceDependencies.okHttpLogging

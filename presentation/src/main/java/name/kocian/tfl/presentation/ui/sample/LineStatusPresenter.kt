@@ -21,7 +21,7 @@ class LineStatusPresenter(
 
     override fun loadStatus() {
 
-        compositeDisposable.add(statusUseCase.build()
+        compositeDisposable.add(statusUseCase.initialise()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .toObservable()
