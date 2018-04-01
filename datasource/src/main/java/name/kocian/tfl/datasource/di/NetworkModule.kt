@@ -1,5 +1,6 @@
 package name.kocian.tfl.datasource.di
 
+import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -7,10 +8,12 @@ import dagger.Module
 import dagger.Provides
 import name.kocian.tfl.datasource.BuildConfig
 import name.kocian.tfl.datasource.service.StatusService
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 @Module
@@ -36,8 +39,10 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(cacheInterceptor: CacheInterceptor, cache: Cache): OkHttpClient {
         val builder = OkHttpClient.Builder()
+                .cache(cache)
+                .addNetworkInterceptor(cacheInterceptor)
 
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor()
@@ -50,6 +55,17 @@ class NetworkModule {
                 .readTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(BuildConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
                 .build()
+    }
+
+    @Provides
+    fun provideCacheInterceptor(context: Context): CacheInterceptor {
+        return CacheInterceptor(context)
+    }
+
+    @Provides
+    fun provideNetworkCache(context: Context): Cache {
+        val httpCacheDirectory = File(context.cacheDir, BuildConfig.CACHE_DIRECTORY)
+        return Cache(httpCacheDirectory, BuildConfig.CACHE_SIZE)
     }
 
     @Provides

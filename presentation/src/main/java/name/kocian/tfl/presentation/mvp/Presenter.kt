@@ -32,7 +32,8 @@ open class BasePresenter<T> : MvpPresenter<T> {
     override fun attachNetworkManager(networkManager: NetworkManager) {
         compositeDisposable.add(networkManager
                 .networkChangesObservable()
-                .subscribe({ handleNetworkStatus(it) }))
+                .subscribe({ handleNetworkStatus(it) },
+                        { t -> t.printStackTrace() }))
     }
 
     private fun handleNetworkStatus(status: Boolean) {

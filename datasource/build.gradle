@@ -4,8 +4,10 @@ apply from: '../config/android.gradle'
 
 android {
     buildTypes.each {
-        it.buildConfigField 'long', 'CACHE_MAX_AGE', "60"
-        it.buildConfigField 'long', 'CACHE_MAX_STALE', "3600"
+        it.buildConfigField 'int', 'CACHE_MAX_AGE', "60"
+        it.buildConfigField 'int', 'CACHE_MAX_STALE', "3600"
+        it.buildConfigField 'long', 'CACHE_SIZE', "10485760" // 10 MB
+        it.buildConfigField 'String', 'CACHE_DIRECTORY', "\"responses\""
         it.buildConfigField 'long', 'NETWORK_TIMEOUT', "15"
         it.buildConfigField 'String', 'BASE_URL', "\"https://api.tfl.gov.uk\""
     }
