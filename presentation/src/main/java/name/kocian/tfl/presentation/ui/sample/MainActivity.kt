@@ -51,4 +51,9 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
     override fun hideLoading() {
         status_swipe_refresh.isRefreshing = false
     }
+
+    override fun onDestroy() {
+        presenter.detachView()
+        super.onDestroy()
+    }
 }
