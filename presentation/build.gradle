@@ -24,9 +24,6 @@ dependencies {
     implementation presentationDependencies.supportAppcompat
     implementation presentationDependencies.constraintLayout
 
-    implementation dataSourceDependencies.retrofit
-    implementation dataSourceDependencies.retrofitGsonMap
-
     androidTestImplementation testDependencies.junit4
     androidTestImplementation testDependencies.espressoCore
     androidTestImplementation testDependencies.espressoRunner

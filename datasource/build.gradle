@@ -15,9 +15,9 @@ dependencies {
     implementation project(':domain')
     implementation project(':device')
 
+    api dataSourceDependencies.retrofit
+    api dataSourceDependencies.retrofitGsonMap
+    implementation dataSourceDependencies.retrofitRxAdapter
     implementation dataSourceDependencies.okHttp
     implementation dataSourceDependencies.okHttpLogging
-    implementation dataSourceDependencies.retrofit
-    implementation dataSourceDependencies.retrofitGsonMap
-    implementation dataSourceDependencies.retrofitRxAdapter
 }
