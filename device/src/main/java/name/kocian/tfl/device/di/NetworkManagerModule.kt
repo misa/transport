@@ -1,16 +1,15 @@
-package name.kocian.tfl.presentation.di
+package name.kocian.tfl.device.di
 
 import android.content.Context
 import dagger.Provides
 import name.kocian.tfl.device.network.NetworkManager
 import name.kocian.tfl.device.network.NetworkManagerImpl
 
-@AppScope
 @dagger.Module
-class ApplicationModule(private val context: Context) {
+class NetworkManagerModule {
 
     @Provides
-    fun provideContext(): Context {
-        return context
+    fun provideNetworkManager(context: Context): NetworkManager {
+        return NetworkManagerImpl(context)
     }
 }
