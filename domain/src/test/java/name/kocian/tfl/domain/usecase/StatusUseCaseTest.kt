@@ -1,7 +1,6 @@
 package name.kocian.tfl.domain.usecase
 
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
 import name.kocian.tfl.domain.entity.LineStatus
 import name.kocian.tfl.domain.repository.StatusRepository
 import org.junit.Before
@@ -28,11 +27,7 @@ class StatusUseCaseTest {
 
     @Before
     fun setUp() {
-        statusUseCase = StatusUseCase(
-                statusRepository,
-                Schedulers.trampoline(),
-                Schedulers.trampoline()
-        )
+        statusUseCase = StatusUseCase(statusRepository)
     }
 
     @Test
@@ -41,7 +36,7 @@ class StatusUseCaseTest {
         result.add(LineStatus("id", "name", "type", 10, "severity", "description"))
         `when`(statusRepository.getLineStatus()).thenReturn(Single.just(result))
 
-        statusUseCase.build()
+        statusUseCase.initialise()
                 .test()
                 .assertValueCount(1)
                 .assertValue(result)
