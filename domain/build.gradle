@@ -9,7 +9,6 @@ dependencies {
     kapt sharedDependencies.daggerProcessor
 
     implementation sharedDependencies.rxJava
-    implementation sharedDependencies.rxAndroid
 
     testImplementation testDependencies.mockito
     testImplementation testDependencies.assertJ
