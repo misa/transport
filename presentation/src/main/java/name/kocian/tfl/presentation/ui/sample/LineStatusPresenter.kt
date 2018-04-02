@@ -1,6 +1,5 @@
 package name.kocian.tfl.presentation.ui.sample
 
-import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -15,8 +14,6 @@ class LineStatusPresenter(
 
     override fun initPresenter() {
         loadStatus()
-
-        attachNetworkManager(networkManager)
     }
 
     override fun loadStatus() {
@@ -40,13 +37,17 @@ class LineStatusPresenter(
                             view?.showStatusNotAvailableError()
                         }
                 ))
-    }
 
-    override fun onNetworkReconnected() {
-        Log.v("LineStatusPresenter", "Network reconnected")
-    }
-
-    override fun onNetworkDisconnected() {
-        Log.v("LineStatusPresenter", "Network disconnected")
+        compositeDisposable.add(networkManager
+                .networkChangesObservable()
+                .distinctUntilChanged()
+                .onErrorReturn { true }
+                .subscribe({
+                    if (it) {
+                        view?.hideNoNetworkMessage()
+                    } else {
+                        view?.showNoNetworkMessage()
+                    }
+                }))
     }
 }

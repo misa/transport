@@ -10,10 +10,12 @@ interface LineStatusMvp {
         fun showStatuses(statuses: List<StatusModel>)
 
         fun showStatusNotAvailableError()
-
         fun hideStatusNotAvailableError()
 
         fun hideLoading()
+
+        fun showNoNetworkMessage()
+        fun hideNoNetworkMessage()
     }
 
     interface Presenter : MvpPresenter<View> {

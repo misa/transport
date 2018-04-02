@@ -1,6 +1,7 @@
 package name.kocian.tfl.presentation.ui.sample
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
     lateinit var presenter: LineStatusMvp.Presenter
 
     private val adapter = LineStatusAdapter()
+    private var snackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -46,6 +48,17 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
 
     override fun hideStatusNotAvailableError() {
         status_error_message.visibility = View.GONE
+    }
+
+    override fun showNoNetworkMessage() {
+        if (snackbar == null) {
+            snackbar = Snackbar.make(status_swipe_refresh, "No network available", Snackbar.LENGTH_INDEFINITE)
+        }
+        snackbar?.show()
+    }
+
+    override fun hideNoNetworkMessage() {
+        snackbar?.dismiss()
     }
 
     override fun hideLoading() {
