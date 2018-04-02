@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="name.kocian.tfl.presentation.ui.sample.MainActivity">
+    tools:context=".presentation.ui.sample.LineStatusActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

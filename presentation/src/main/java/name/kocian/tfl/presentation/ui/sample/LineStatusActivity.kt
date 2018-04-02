@@ -15,7 +15,7 @@ import name.kocian.tfl.R
 import name.kocian.tfl.presentation.model.StatusModel
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), LineStatusMvp.View {
+class LineStatusActivity : AppCompatActivity(), LineStatusMvp.View {
 
     @Inject
     lateinit var presenter: LineStatusMvp.Presenter

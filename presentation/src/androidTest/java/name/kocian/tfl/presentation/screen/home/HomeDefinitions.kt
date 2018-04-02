@@ -4,7 +4,7 @@ import android.support.test.rule.ActivityTestRule
 import name.kocian.tfl.presentation.base.MockWebServerRule
 import name.kocian.tfl.presentation.base.UiTest
 import name.kocian.tfl.presentation.data.ServerJson
-import name.kocian.tfl.presentation.ui.sample.MainActivity
+import name.kocian.tfl.presentation.ui.sample.LineStatusActivity
 import org.junit.Rule
 
 @Suppress("ClassName")
@@ -13,7 +13,7 @@ open class HomeDefinitions(feature: String, description: String)
 
     @Rule
     @JvmField
-    val activityRule = ActivityTestRule(MainActivity::class.java)
+    val activityRule = ActivityTestRule(LineStatusActivity::class.java)
 
     @Rule
     @JvmField

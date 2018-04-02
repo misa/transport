@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="name.kocian.tfl.presentation.ui.sample.MainActivity"
+    tools:context=".presentation.ui.sample.LineStatusActivity"
     tools:showIn="@layout/activity_main">
 
     <android.support.constraint.ConstraintLayout

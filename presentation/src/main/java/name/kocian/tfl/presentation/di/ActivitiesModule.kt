@@ -2,8 +2,8 @@ package name.kocian.tfl.presentation.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import name.kocian.tfl.presentation.ui.sample.LineStatusActivity
 import name.kocian.tfl.presentation.ui.sample.LineStatusModule
-import name.kocian.tfl.presentation.ui.sample.MainActivity
 
 @Module
 @ActivityScope
@@ -13,5 +13,5 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector(modules = [
         LineStatusModule::class
     ])
-    abstract fun provideMainActivityInjector(): MainActivity
+    abstract fun provideMainActivityInjector(): LineStatusActivity
 }
