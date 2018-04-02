@@ -70,6 +70,10 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
         status_swipe_refresh.isRefreshing = false
     }
 
+    override fun showLoading() {
+        status_swipe_refresh.isRefreshing = true
+    }
+
     override fun onDestroy() {
         presenter.detachView()
         super.onDestroy()

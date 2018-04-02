@@ -14,6 +14,7 @@ interface LineStatusMvp {
         fun hideStatusNotAvailableError()
 
         fun hideLoading()
+        fun showLoading()
 
         fun showNoNetworkMessage()
         fun hideNoNetworkMessage()

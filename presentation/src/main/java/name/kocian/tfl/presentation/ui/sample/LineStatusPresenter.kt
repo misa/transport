@@ -18,6 +18,7 @@ class LineStatusPresenter(
     }
 
     override fun loadStatuses() {
+        view?.showLoading()
         compositeDisposable.add(statusUseCase.initialise()
                 .map {
                     it.sortedWith(LinesComparator())
@@ -56,6 +57,7 @@ class LineStatusPresenter(
                 .subscribe({
                     if (it) {
                         view?.hideNoNetworkMessage()
+                        loadStatuses()
                     } else {
                         view?.showNoNetworkMessage()
                     }
