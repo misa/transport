@@ -1,6 +1,5 @@
 package name.kocian.tfl.presentation.ui.sample
 
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import name.kocian.tfl.device.network.NetworkManager
@@ -13,19 +12,19 @@ class LineStatusPresenter(
     : LineStatusMvp.Presenter, BasePresenter<LineStatusMvp.View>() {
 
     override fun initPresenter() {
-        loadStatus()
+        loadStatuses()
+        initReloading()
+        initNetworkChanges()
     }
 
-    override fun loadStatus() {
-
+    override fun loadStatuses() {
         compositeDisposable.add(statusUseCase.initialise()
+                .map {
+                    it.sortedWith(LinesComparator())
+                            .map { LineStatusModelMapping().toModel(it) }
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .toObservable()
-                .flatMap { Observable.fromIterable(it) }
-                .sorted(LinesComparator())
-                .map { LineStatusModelMapping().toModel(it) }
-                .toList()
                 .subscribe(
                         {
                             view?.hideStatusNotAvailableError()
@@ -37,7 +36,19 @@ class LineStatusPresenter(
                             view?.showStatusNotAvailableError()
                         }
                 ))
+    }
 
+    private fun initReloading() {
+        compositeDisposable.add(view!!.reloadStatuses()
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    loadStatuses()
+                }, {
+                    view?.hideLoading()
+                }))
+    }
+
+    private fun initNetworkChanges() {
         compositeDisposable.add(networkManager
                 .networkChangesObservable()
                 .distinctUntilChanged()
@@ -48,6 +59,8 @@ class LineStatusPresenter(
                     } else {
                         view?.showNoNetworkMessage()
                     }
+                }, {
+                    it.printStackTrace()
                 }))
     }
 }

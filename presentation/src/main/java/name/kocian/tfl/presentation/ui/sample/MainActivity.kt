@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout
 import dagger.android.AndroidInjection
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import name.kocian.tfl.R
@@ -29,7 +31,10 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
         setSupportActionBar(toolbar)
         presenter.attachView(this)
         presenter.initPresenter()
-        status_swipe_refresh.setOnRefreshListener({ presenter.loadStatus() })
+    }
+
+    override fun reloadStatuses(): Observable<Any> {
+        return RxSwipeRefreshLayout.refreshes(status_swipe_refresh)
     }
 
     override fun showStatuses(statuses: List<StatusModel>) {
@@ -52,7 +57,7 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
 
     override fun showNoNetworkMessage() {
         if (snackbar == null) {
-            snackbar = Snackbar.make(status_swipe_refresh, "No network available", Snackbar.LENGTH_INDEFINITE)
+            snackbar = Snackbar.make(status_swipe_refresh, R.string.error_no_network, Snackbar.LENGTH_INDEFINITE)
         }
         snackbar?.show()
     }

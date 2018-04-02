@@ -1,6 +1,5 @@
 package name.kocian.tfl.datasource.repository
 
-import io.reactivex.Observable
 import io.reactivex.Single
 import name.kocian.tfl.datasource.dto.LineStatusDtoMapper
 import name.kocian.tfl.datasource.service.StatusService
@@ -13,10 +12,8 @@ class StatusRepositoryImpl @Inject constructor(
         private val mapper: LineStatusDtoMapper) : StatusRepository {
 
     override fun getLineStatus(): Single<List<LineStatus>> {
-        return statusService.lineStatus
-                .toObservable()
-                .flatMap { t -> Observable.fromIterable(t) }
-                .map { mapper.toDomain(it) }
-                .toList()
+        return statusService
+                .lineStatus
+                .map { it.map { mapper.toDomain(it) } }
     }
 }

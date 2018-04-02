@@ -4,5 +4,6 @@
 
     <string name="line_status_icon">Line status icon</string>
     <string name="error_data_not_available">Status\nnot available</string>
+    <string name="error_no_network">Internet not available</string>
 
 </resources>

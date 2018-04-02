@@ -1,5 +1,6 @@
 package name.kocian.tfl.presentation.ui.sample
 
+import io.reactivex.Observable
 import name.kocian.tfl.presentation.model.StatusModel
 import name.kocian.tfl.presentation.mvp.MvpPresenter
 import name.kocian.tfl.presentation.mvp.MvpView
@@ -16,11 +17,13 @@ interface LineStatusMvp {
 
         fun showNoNetworkMessage()
         fun hideNoNetworkMessage()
+
+        fun reloadStatuses(): Observable<Any>
     }
 
     interface Presenter : MvpPresenter<View> {
         fun initPresenter()
 
-        fun loadStatus()
+        fun loadStatuses()
     }
 }
