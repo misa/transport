@@ -27,7 +27,7 @@ class StatusRepositoryImplTest {
     }
 
     @Test
-    fun getTestReturnsSampleText() {
+    fun getTestReturnsStatusText() {
         val lineStatuses = mutableListOf(SeverityDto(10, "severity", "description"))
         val tubeDto = LineStatusDto("id", "test", "type", lineStatuses)
         val response = Collections.singletonList(tubeDto)

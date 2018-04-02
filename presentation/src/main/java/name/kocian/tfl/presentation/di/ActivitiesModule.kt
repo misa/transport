@@ -2,8 +2,8 @@ package name.kocian.tfl.presentation.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import name.kocian.tfl.presentation.ui.sample.LineStatusActivity
-import name.kocian.tfl.presentation.ui.sample.LineStatusModule
+import name.kocian.tfl.presentation.ui.status.LineStatusActivity
+import name.kocian.tfl.presentation.ui.status.LineStatusModule
 
 @Module
 @ActivityScope

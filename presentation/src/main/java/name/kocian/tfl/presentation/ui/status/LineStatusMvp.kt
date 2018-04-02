@@ -1,4 +1,4 @@
-package name.kocian.tfl.presentation.ui.sample
+package name.kocian.tfl.presentation.ui.status
 
 import io.reactivex.Observable
 import name.kocian.tfl.presentation.model.StatusModel

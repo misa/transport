@@ -4,7 +4,7 @@ import android.support.test.rule.ActivityTestRule
 import name.kocian.tfl.presentation.base.MockWebServerRule
 import name.kocian.tfl.presentation.base.UiTest
 import name.kocian.tfl.presentation.data.ServerJson
-import name.kocian.tfl.presentation.ui.sample.LineStatusActivity
+import name.kocian.tfl.presentation.ui.status.LineStatusActivity
 import org.junit.Rule
 
 @Suppress("ClassName")

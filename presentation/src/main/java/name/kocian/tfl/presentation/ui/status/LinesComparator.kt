@@ -1,4 +1,4 @@
-package name.kocian.tfl.presentation.ui.sample
+package name.kocian.tfl.presentation.ui.status
 
 import name.kocian.tfl.domain.entity.LineStatus
 

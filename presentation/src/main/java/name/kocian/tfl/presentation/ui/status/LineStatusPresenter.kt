@@ -1,4 +1,4 @@
-package name.kocian.tfl.presentation.ui.sample
+package name.kocian.tfl.presentation.ui.status
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

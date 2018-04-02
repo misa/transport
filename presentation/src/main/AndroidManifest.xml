@@ -14,7 +14,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".presentation.ui.sample.LineStatusActivity"
+            android:name=".presentation.ui.status.LineStatusActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

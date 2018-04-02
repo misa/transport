@@ -1,4 +1,4 @@
-package name.kocian.tfl.presentation.ui.sample
+package name.kocian.tfl.presentation.ui.status
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
