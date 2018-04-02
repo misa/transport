@@ -23,6 +23,8 @@ dependencies {
     implementation presentationDependencies.supportDesign
     implementation presentationDependencies.supportAppcompat
     implementation presentationDependencies.constraintLayout
+    implementation presentationDependencies.rxBinding
+    implementation presentationDependencies.rxBindingSupport
 
     androidTestImplementation testDependencies.junit4
     androidTestImplementation testDependencies.espressoCore
