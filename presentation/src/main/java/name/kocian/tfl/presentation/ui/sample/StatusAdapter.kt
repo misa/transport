@@ -32,21 +32,25 @@ internal class LineStatusAdapter(
         holder.vLineColor.setBackgroundResource(colorId)
         holder.tvName.text = line.name
 
-        if (line.severity < SEVERITY_GOOD_SERVICE) {
-            holder.tvDescription.text = line.description
-            holder.tvSeverity.text = line.severityTitle
-            holder.tvDescription.visibility = View.VISIBLE
-            holder.tvStatusIcon.visibility = View.VISIBLE
-            holder.tvSeverity.visibility = View.VISIBLE
-        } else if (line.severity == SEVERITY_CLOSED) {
-            holder.tvDescription.visibility = View.GONE
-            holder.tvSeverity.visibility = View.VISIBLE
-            holder.tvSeverity.text = line.severityTitle
-            holder.tvStatusIcon.visibility = View.INVISIBLE
-        } else {
-            holder.tvDescription.visibility = View.GONE
-            holder.tvSeverity.visibility = View.INVISIBLE
-            holder.tvStatusIcon.visibility = View.INVISIBLE
+        when (line.severity) {
+            in 0..SEVERITY_TODO -> {
+                holder.tvDescription.text = line.description
+                holder.tvSeverity.text = line.severityTitle
+                holder.tvDescription.visibility = View.VISIBLE
+                holder.tvStatusIcon.visibility = View.VISIBLE
+                holder.tvSeverity.visibility = View.VISIBLE
+            }
+            SEVERITY_CLOSED -> {
+                holder.tvDescription.visibility = View.GONE
+                holder.tvSeverity.visibility = View.VISIBLE
+                holder.tvSeverity.text = line.severityTitle
+                holder.tvStatusIcon.visibility = View.INVISIBLE
+            }
+            else -> {
+                holder.tvDescription.visibility = View.GONE
+                holder.tvSeverity.visibility = View.INVISIBLE
+                holder.tvStatusIcon.visibility = View.INVISIBLE
+            }
         }
     }
 
@@ -59,9 +63,6 @@ internal class LineStatusAdapter(
         notifyDataSetChanged()
     }
 
-    /**
-     * Assets view holder.
-     */
     internal inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.tv_line_status_name
         val vLineColor: View = itemView.v_line_status_color
@@ -71,14 +72,8 @@ internal class LineStatusAdapter(
     }
 
     companion object {
-        /**
-         * Severity - Good service.
-         */
+        private const val SEVERITY_TODO = 9
         private const val SEVERITY_GOOD_SERVICE = 10
-
-        /**
-         * Severity - Closed.
-         */
         private const val SEVERITY_CLOSED = 20
     }
 }
