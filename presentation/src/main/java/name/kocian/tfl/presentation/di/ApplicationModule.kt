@@ -2,8 +2,6 @@ package name.kocian.tfl.presentation.di
 
 import android.content.Context
 import dagger.Provides
-import name.kocian.tfl.device.network.NetworkManager
-import name.kocian.tfl.device.network.NetworkManagerImpl
 
 @AppScope
 @dagger.Module
