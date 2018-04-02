@@ -3,7 +3,5 @@ apply plugin: 'kotlin-android'
 apply from: '../config/android.gradle'
 
 dependencies {
-    implementation project(':domain')
-
     implementation deviceDependencies.rxBroadcast
 }
