@@ -1,8 +1,11 @@
 package name.kocian.tfl.domain.usecase
 
 import io.reactivex.Single
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
 import name.kocian.tfl.domain.entity.LineStatus
 import name.kocian.tfl.domain.repository.StatusRepository
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -27,11 +30,18 @@ class StatusUseCaseTest {
 
     @Before
     fun setUp() {
+        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+
         statusUseCase = StatusUseCase(statusRepository)
     }
 
+    @After
+    fun tearDown() {
+        RxJavaPlugins.reset()
+    }
+
     @Test
-    fun testBuildObservable() {
+    fun initialisation() {
         val result = ArrayList<LineStatus>()
         result.add(LineStatus("id", "name", "type", 10, "severity", "description"))
         `when`(statusRepository.getLineStatus()).thenReturn(Single.just(result))
