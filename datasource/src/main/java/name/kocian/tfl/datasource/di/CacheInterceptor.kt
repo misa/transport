@@ -28,7 +28,7 @@ class CacheInterceptor(private val networkManager: NetworkManager) : Interceptor
         return response.newBuilder()
                 .removeHeader("Pragma")
                 .removeHeader("Cache-Control")
-                .header("Cache-Control", "public, " + cacheHeaderValue)
+                .header("Cache-Control", "public, $cacheHeaderValue")
                 .build()
     }
 }
