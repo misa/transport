@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import name.kocian.tfl.datasource.BuildConfig
 import name.kocian.tfl.datasource.service.StatusService
+import name.kocian.tfl.device.network.NetworkManager
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -58,8 +59,8 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideCacheInterceptor(context: Context): CacheInterceptor {
-        return CacheInterceptor(context)
+    fun provideCacheInterceptor(networkManager: NetworkManager): CacheInterceptor {
+        return CacheInterceptor(networkManager)
     }
 
     @Provides
