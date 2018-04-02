@@ -74,11 +74,11 @@ internal class LineStatusAdapter(
         /**
          * Severity - Good service.
          */
-        private val SEVERITY_GOOD_SERVICE = 10
+        private const val SEVERITY_GOOD_SERVICE = 10
 
         /**
          * Severity - Closed.
          */
-        private val SEVERITY_CLOSED = 20
+        private const val SEVERITY_CLOSED = 20
     }
 }
