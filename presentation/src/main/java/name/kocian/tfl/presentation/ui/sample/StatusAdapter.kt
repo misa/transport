@@ -25,31 +25,31 @@ internal class LineStatusAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val line = items[holder.adapterPosition]
-        val colorId = holder.vLineColor.context.resources.getIdentifier(
+        val colorId = holder.lineColorView.context.resources.getIdentifier(
                 "line_color_" + line.id.replace("-", "_"), "color",
-                holder.vLineColor.context.packageName)
+                holder.lineColorView.context.packageName)
 
-        holder.vLineColor.setBackgroundResource(colorId)
-        holder.tvName.text = line.name
+        holder.lineColorView.setBackgroundResource(colorId)
+        holder.nameTextView.text = line.name
 
         when (line.severity) {
             in 0..SEVERITY_TODO -> {
-                holder.tvDescription.text = line.description
-                holder.tvSeverity.text = line.severityTitle
-                holder.tvDescription.visibility = View.VISIBLE
-                holder.tvStatusIcon.visibility = View.VISIBLE
-                holder.tvSeverity.visibility = View.VISIBLE
+                holder.descriptionTextView.text = line.description
+                holder.severityTextView.text = line.severityTitle
+                holder.descriptionTextView.visibility = View.VISIBLE
+                holder.statusIconImageView.visibility = View.VISIBLE
+                holder.severityTextView.visibility = View.VISIBLE
             }
             SEVERITY_CLOSED -> {
-                holder.tvDescription.visibility = View.GONE
-                holder.tvSeverity.visibility = View.VISIBLE
-                holder.tvSeverity.text = line.severityTitle
-                holder.tvStatusIcon.visibility = View.INVISIBLE
+                holder.descriptionTextView.visibility = View.GONE
+                holder.severityTextView.visibility = View.VISIBLE
+                holder.severityTextView.text = line.severityTitle
+                holder.statusIconImageView.visibility = View.INVISIBLE
             }
             else -> {
-                holder.tvDescription.visibility = View.GONE
-                holder.tvSeverity.visibility = View.INVISIBLE
-                holder.tvStatusIcon.visibility = View.INVISIBLE
+                holder.descriptionTextView.visibility = View.GONE
+                holder.severityTextView.visibility = View.INVISIBLE
+                holder.statusIconImageView.visibility = View.INVISIBLE
             }
         }
     }
@@ -64,11 +64,11 @@ internal class LineStatusAdapter(
     }
 
     internal inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.tv_line_status_name
-        val vLineColor: View = itemView.v_line_status_color
-        val tvStatusIcon: ImageView = itemView.iv_line_status_icon
-        val tvDescription: TextView = itemView.tv_line_status_description
-        val tvSeverity: TextView = itemView.tv_line_status_severity
+        val nameTextView: TextView = itemView.nameTextView
+        val lineColorView: View = itemView.lineColorView
+        val statusIconImageView: ImageView = itemView.statusIconImageView
+        val descriptionTextView: TextView = itemView.descriptionTextView
+        val severityTextView: TextView = itemView.statusSeverityTextView
     }
 
     companion object {

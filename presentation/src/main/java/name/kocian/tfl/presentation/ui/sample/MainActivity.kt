@@ -34,30 +34,30 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
     }
 
     override fun reloadStatuses(): Observable<Any> {
-        return RxSwipeRefreshLayout.refreshes(status_swipe_refresh)
+        return RxSwipeRefreshLayout.refreshes(statusSwipeRefresh)
     }
 
     override fun showStatuses(statuses: List<StatusModel>) {
-        if (rv_lines.layoutManager == null) {
-            rv_lines.layoutManager = LinearLayoutManager(this)
-            rv_lines.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-            rv_lines.adapter = adapter
+        if (statusesRecyclerView.layoutManager == null) {
+            statusesRecyclerView.layoutManager = LinearLayoutManager(this)
+            statusesRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+            statusesRecyclerView.adapter = adapter
         }
 
         adapter.setStatuses(statuses)
     }
 
     override fun showStatusNotAvailableError() {
-        status_error_message.setText(R.string.error_data_not_available)
+        errorMessageTextView.setText(R.string.error_data_not_available)
     }
 
     override fun hideStatusNotAvailableError() {
-        status_error_message.visibility = View.GONE
+        errorMessageTextView.visibility = View.GONE
     }
 
     override fun showNoNetworkMessage() {
         if (snackbar == null) {
-            snackbar = Snackbar.make(status_swipe_refresh, R.string.error_no_network, Snackbar.LENGTH_INDEFINITE)
+            snackbar = Snackbar.make(coordinatorLayout, R.string.error_no_network, Snackbar.LENGTH_INDEFINITE)
         }
         snackbar?.show()
     }
@@ -67,11 +67,11 @@ class MainActivity : AppCompatActivity(), LineStatusMvp.View {
     }
 
     override fun hideLoading() {
-        status_swipe_refresh.isRefreshing = false
+        statusSwipeRefresh.isRefreshing = false
     }
 
     override fun showLoading() {
-        status_swipe_refresh.isRefreshing = true
+        statusSwipeRefresh.isRefreshing = true
     }
 
     override fun onDestroy() {
