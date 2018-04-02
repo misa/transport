@@ -9,8 +9,8 @@ class LineStatusDtoMapper @Inject constructor() {
             lineStatusDto.id,
             lineStatusDto.name,
             lineStatusDto.transportType,
-            lineStatusDto.lineSeverity.get(0).severity,
-            lineStatusDto.lineSeverity.get(0).severityTitle,
-            lineStatusDto.lineSeverity.get(0).description
+            lineStatusDto.lineSeverity[0].severity,
+            lineStatusDto.lineSeverity[0].severityTitle,
+            lineStatusDto.lineSeverity[0].description
     )
 }
