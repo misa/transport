@@ -4,6 +4,6 @@
   "exceptionType": "EntityNotFoundException",
   "httpStatusCode": 404,
   "httpStatus": "NotFound",
-  "relativeUri": "/line/mode/tube/statusx",
-  "message": "Resource not found: http://api:8001/line/mode/tube/statusx"
+  "relativeUri": "/line/mode/tube/test_404",
+  "message": "Resource not found: http://api:8001/line/mode/tube/test_404"
 }
