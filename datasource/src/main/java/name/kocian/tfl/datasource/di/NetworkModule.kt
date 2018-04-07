@@ -40,9 +40,13 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideHttpClient(cacheInterceptor: CacheInterceptor, cache: Cache): OkHttpClient {
+    fun provideHttpClient(
+            cacheInterceptor: CacheInterceptor,
+            offlineCacheInterceptor: OfflineCacheInterceptor,
+            cache: Cache): OkHttpClient {
         val builder = OkHttpClient.Builder()
                 .cache(cache)
+                .addInterceptor(offlineCacheInterceptor)
                 .addNetworkInterceptor(cacheInterceptor)
 
         if (BuildConfig.DEBUG) {
@@ -59,8 +63,13 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideCacheInterceptor(networkManager: NetworkManager): CacheInterceptor {
-        return CacheInterceptor(networkManager)
+    fun provideCacheInterceptor(): CacheInterceptor {
+        return CacheInterceptor()
+    }
+
+    @Provides
+    fun provideOfflineCacheInterceptor(networkManager: NetworkManager): OfflineCacheInterceptor {
+        return OfflineCacheInterceptor(networkManager)
     }
 
     @Provides
