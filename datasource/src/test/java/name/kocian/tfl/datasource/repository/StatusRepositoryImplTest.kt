@@ -12,6 +12,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
+import java.net.UnknownHostException
 import java.util.*
 
 @RunWith(MockitoJUnitRunner::class)
@@ -27,7 +28,7 @@ class StatusRepositoryImplTest {
     }
 
     @Test
-    fun getTestReturnsStatusText() {
+    fun getStatusesReturnsStatusText() {
         val lineStatuses = mutableListOf(SeverityDto(10, "severity", "description"))
         val tubeDto = LineStatusDto("id", "test", "type", lineStatuses)
         val response = Collections.singletonList(tubeDto)
@@ -39,5 +40,16 @@ class StatusRepositoryImplTest {
                 .assertValueCount(1)
                 .assertNoErrors()
                 .assertComplete()
+    }
+
+    @Test
+    fun getStatusesReceives500Response() {
+        val response = UnknownHostException()
+
+        `when`(mockStatusService.lineStatus).thenReturn(Single.error(response))
+
+        repository.getLineStatus()
+                .test()
+                .assertError(Exception::class.java)
     }
 }

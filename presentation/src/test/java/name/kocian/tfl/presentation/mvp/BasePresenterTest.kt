@@ -7,7 +7,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
-@Suppress("FunctionName")
 @RunWith(MockitoJUnitRunner::class)
 class BasePresenterTest {
     private lateinit var presenter: BasePresenter<MvpView>
@@ -26,14 +25,14 @@ class BasePresenterTest {
     }
 
     @Test
-    fun attachView_attachesView() {
+    fun attachView() {
         presenter.attachView(mockView)
 
         assertThat(presenter).extracting("view").contains(mockView)
     }
 
     @Test
-    fun detachView_detachesView() {
+    fun detachView() {
         presenter.attachView(mockView)
         presenter.detachView()
 

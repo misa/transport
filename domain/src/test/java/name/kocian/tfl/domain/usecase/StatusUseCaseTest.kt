@@ -15,6 +15,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.junit.MockitoRule
+import java.net.UnknownHostException
 
 @RunWith(MockitoJUnitRunner::class)
 class StatusUseCaseTest {
@@ -52,5 +53,15 @@ class StatusUseCaseTest {
                 .assertValue(result)
                 .assertNoErrors()
                 .assertComplete()
+    }
+
+    @Test
+    fun errorResponseFromRepository() {
+        val result = UnknownHostException()
+        `when`(statusRepository.getLineStatus()).thenReturn(Single.error(result))
+
+        statusUseCase.initialise()
+                .test()
+                .assertError(Exception::class.java)
     }
 }

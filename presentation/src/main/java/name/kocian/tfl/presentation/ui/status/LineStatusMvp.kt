@@ -24,7 +24,5 @@ interface LineStatusMvp {
 
     interface Presenter : MvpPresenter<View> {
         fun initPresenter()
-
-        fun loadStatuses()
     }
 }
